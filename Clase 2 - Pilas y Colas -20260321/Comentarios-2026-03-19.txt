@@ -1,0 +1,142 @@
+En Java IPOO:
+Crear un arreglo b de 100 enteros:
+int [] b = new int[100];
+
+b[8] = 6
+System.out.print(b[8]);
+
+Crear un arreglo d de 40 caracteres:
+char [] d = new char[40];
+
+Crear un arreglo de 50 personas:
+Persona [] arr = new Persona[50];
+arr[7] = new Persona("Sergio", 56);
+
+
+datos[cant++] = item;
+
+datos[cant] = item;
+cant = cant + 1;
+
+
+datos[cant] = item;
+cant += 1;
+
+
+datos[cant] = item;
+cant++;
+
+ALTERNATIVA MAS ROBUSTA:
+public E recuperar(int i) {
+if (i<0 || i>=cant)  return null;
+else return datos[i];
+}
+
+
+
+public E recuperar(int i) {
+// early return
+if (i<0 || i>=cant)  return null; 
+return datos[i];
+}
+
+Esta de detectar errores hace que el cliente tenga que llenar su código de if-then-else para ver que las operaciones que hace son exitosas (NO ES BUENO).
+
+
+Diapo 49 Escribir Coleccion<int> no compila.
+
+Se puede escribir:
+Coleccion<Vector<Coleccion<Persona>>> c
+= new ColeccionConArreglo<>(8);
+
+-----------------------------
+Ejemplo de Scanner cerrado en el finally:
+De Google:
+import java.util.Scanner;
+
+public class EjemploScanner {
+    public static void main(String[] args) {
+        Scanner scanner = null; // 1. Declarar fuera del try
+        try {
+            scanner = new Scanner(System.in);
+            System.out.print("Introduce tu nombre: ");
+            String nombre = scanner.nextLine();
+            System.out.println("Hola, " + nombre);
+        } catch (Exception e) {
+            System.out.println("Ocurrió un error: " + e.getMessage());
+        } finally {
+            // 2. Cerrar en finally para garantizar la ejecución
+            if (scanner != null) {
+                scanner.close();
+                System.out.println("Scanner cerrado.");
+            }
+        }
+    }
+}
+
+Documentacion de RuntimeException:
+
+https://docs.oracle.com/javase/8/docs/api/java/lang/RuntimeException.html
+
+Código fuente de Vector:
+
+https://github.com/openjdk-mirror/jdk7u-jdk/blob/master/src/share/classes/java/util/Vector.java
+
+En Matematica la descrpcion de la conmutatividad:
+a+b=b+a
+
+
+
+System.out.println("Vaciar la pila:");
+while ( pilaStr.empty() == false ) {
+elemento = pilaStr.pop();
+System.out.println("elemento: " + elemento);
+}
+
+es igual a:
+
+System.out.println("Vaciar la pila:");
+while ( !pilaStr.empty() ) {
+elemento = pilaStr.pop();
+System.out.println("elemento: " + elemento);
+}
+
+VOIDING:
+
+int elemento = q.remove();
+
+lo cambio por:
+
+q.remove();
+
+elimina el primero y el resultado se pierde en la nada (voiding)
+
+Como la pila y la cola exponen size()
+para ver el tamaño, para borrar su contenido puedo hacer:
+
+int n = cola.size();
+for (int i=0; i<n; i++)
+	cola.remove();
+
+
+Este codigo:
+Integer elemento;
+while ((elemento = cola.poll()) != null) {
+	System.out.println("Eliminado: " + elemento);
+}
+
+
+ se puede escribir a la Pascal:
+
+Integer elemento = cola.poll();
+while ( elemento != null ) {
+	System.out.println("Eliminado: " + elemento);
+	elemento = cola.poll();
+}
+
+read(c);
+while c <> '.' do
+begin
+    hacer algo con c;
+    read(c)
+end;
