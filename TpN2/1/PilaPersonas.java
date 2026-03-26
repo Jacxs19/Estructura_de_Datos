@@ -1,4 +1,4 @@
-import java.util.EmptyStackException;
+import java.lang.NullPointerException;
 import java.util.Stack;
 
 public class PilaPersonas{
@@ -12,8 +12,8 @@ public class PilaPersonas{
             A[i]=pila.pop();
         }
         }
-        catch(EmptyStackException e){
-            System.out.println("Hubo un intento de desapilar una pila vacia.");
+        catch(NullPointerException e){
+            System.out.println("La referencia al arreglo es nula. "+e.getMessage());
         }
     
 }

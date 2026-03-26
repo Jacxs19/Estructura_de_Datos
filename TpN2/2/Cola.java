@@ -3,18 +3,17 @@ import java.util.LinkedList;
 public class Cola {
     
     
-    public Queue<Integer> nuevaCola (Queue<Integer> c){
-        Integer elemento=0;
+    public Queue<Integer> soloImpares (Queue<Integer> c){
+        int elemento=0;
+        int tamanio =c.size();
         
         Queue <Integer> nueva = new LinkedList<Integer>();
-        try{ 
-        for(int i=0; i< c.size();i++)
+        
+        for(int i=0; i< tamanio;i++)
             if((elemento=c.poll())/2 !=0)
-                nueva.add(elemento);
-        }
-        catch (ArrayIndexOutOfBoundsException e){
-            System.out.println("Se intento superar el limite de la cola"); 
-        }
+                nueva.offer(elemento);
+        
+        
         return nueva;
     }
 

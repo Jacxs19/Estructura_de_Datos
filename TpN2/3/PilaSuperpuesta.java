@@ -1,11 +1,11 @@
 import java.lang.NullPointerException;
 import java.util.Stack;
 
-public class TDAPilaSuperpuesta<E>{
+public class PilaSuperpuesta<E>{
 
 
     public  Stack<E> pilasSuperpuestas (Stack<E> p1 , Stack<E> p2){
-        Stack<E> superPuesto = new Stack<> ();
+        Stack<E> superPuesto = new Stack<E> ();
         try{
             while(!p1.empty() || !p2.empty()){
                 if(!p1.empty())
