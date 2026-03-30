@@ -7,11 +7,11 @@
  *  @version: 2.0
  */
 
-package ar.edu.uns.cs.ed.tdas.tdapila;
+
 import org.junit.*;                         //For tags
 import static org.junit.Assert.*;           //For assertions
+import java.util.EmptyStackException;
 
-import ar.edu.uns.cs.ed.tdas.excepciones.EmptyStackException;
 
 public class StackTest {
 	private Stack<String> s; //interface
@@ -21,7 +21,7 @@ public class StackTest {
 	private Stack<String> getStack()
 	{
 		Stack<String> pila = null;
-		//pila = new PilaConLista<String>(); //TODO: Descomentar y crear instancia del TDA a testear
+		pila = new ArregloPila<String>(); //TODO: Descomentar y crear instancia del TDA a testear
 		return pila;	  
 	 }
 	

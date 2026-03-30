@@ -1,5 +1,4 @@
 import java.util.EmptyStackException;
-import ar.edu.uns.cs.ed.tdas.tdapila.Stack;
 
 public class ArregloPila<E> implements Stack<E> {
     private E[] arreglo;
@@ -18,7 +17,7 @@ public class ArregloPila<E> implements Stack<E> {
     }
     public E top(){
         if(isEmpty())
-            throw new EmptyStackException("Pila vacia");
+            throw new EmptyStackException();
         else
             return arreglo[cant-1];
     }
@@ -27,11 +26,12 @@ public class ArregloPila<E> implements Stack<E> {
         cant++;
     }
     public E pop(){
-        if(!isEmpty())
-            throw new EmptyStackException("Pila vacia");
+        if(isEmpty())
+            throw new EmptyStackException();
         else{ 
             E elemento= arreglo[cant-1];
             arreglo[cant-1]=null;
+            cant--;
             return elemento;
         }
     }
