@@ -12,7 +12,7 @@ public class ArregloCola<E> implements Queue<E>{
         
     }
     public int size(){
-        return ((Arreglo.length-eliminar+cant) % Arreglo.length);
+        return cant-eliminar;
     }
     public boolean isEmpty(){
         return cant==eliminar;
@@ -25,17 +25,30 @@ public class ArregloCola<E> implements Queue<E>{
         }
     }
     public void enqueue(E element){
+        if(cant==Arreglo.length){
+            E[] arregloAux= (E[]) new Object[Arreglo.length*2];
+            int j=0;
+            for(int i=eliminar; i<cant; i++){
+                arregloAux[j]=Arreglo[i];
+                j++;
+            }
+            cant=this.size();
+            eliminar=0;
+            Arreglo=arregloAux;
+            }
         Arreglo[cant]=element;
         cant= (cant+1) % Arreglo.length;
+        }
         
-    }
+        
+    
     public E dequeue() throws EmptyQueueException{
         if(isEmpty())
             throw new EmptyQueueException("Error, cola vacia.");
         else{
             E elemento = Arreglo[eliminar];
             Arreglo[eliminar]= null;
-            eliminar= (eliminar+1) % Arreglo.length;
+            eliminar+=1;
             return elemento;
         }
 
