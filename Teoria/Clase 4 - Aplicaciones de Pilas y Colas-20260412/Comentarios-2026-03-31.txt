@@ -1,0 +1,77 @@
+El metodo debe ser private y no public:
+
+private int contarCharEnPila(char c, Stack<Character> pila) {
+  int cantidad = 0;
+  while ( !pila.isEmpty() ) {
+	if ( pila.pop() == c ) {
+		cantidad ++;
+	}
+  }
+  return cantidad;
+}
+
+COMO USAR "CONTIENE":
+
+Libreria.java
+public class Libreria {
+	public <E> boolean contiene(Stack<E> pila, E item) {
+		boolean encontre = false;
+		while ( !pila.isEmpty() && !encontre ) {
+			if ( pila.top().equals(item) ) encontre = true;
+			else pila.pop();
+		}
+		return encontre;
+	}
+}
+
+Aplicacion.java
+
+import libreria.*;
+
+public class Aplicacion {
+   public static void main(String [] args) {
+	Libreria lib = new Libreria();
+	Stack<Character> pila = new PilaConArreglo<Character>();
+	..... cargar una pila de chars con algo....          
+	boolean estaLaA = lib.contiene('a', pila);
+
+   }
+
+FORMA INCORRECTA DE HACERLO ANDAR:
+Usando clase generica.
+
+Libreria.java
+public class Libreria<E> {
+	public boolean contiene(Stack<E> pila, E item) {
+		boolean encontre = false;
+		while ( !pila.isEmpty() && !encontre ) {
+			if ( pila.top().equals(item) ) encontre = true;
+			else pila.pop();
+		}
+		return encontre;
+	}
+}
+
+
+Aplicacion.java:
+Me fuerza a declarar varias librerias.
+
+import libreria.*;
+
+public class Aplicacion {
+   public static void main(String [] args) {
+	Libreria<Character> lib = new Libreria<>();
+	Stack<Character> pila = new PilaConArreglo<Character>();
+	..... cargar una pila de chars con algo....          
+	boolean estaLaA = lib.contiene(pila, 'a');
+
+
+	Libreria<Integer> lib = new Libreria<>();
+	Stack<Integer> pilaInt = new PilaConArreglo<Integer>();
+	..... cargar una pila de ints con algo....          
+	boolean estaEl8 = lib.contiene(pilaInt, 8);
+
+   }
+
+
+
