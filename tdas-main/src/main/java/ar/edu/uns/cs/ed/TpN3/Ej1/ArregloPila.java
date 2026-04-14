@@ -1,4 +1,4 @@
-package TpN3.Ej1;
+package ar.edu.uns.cs.ed.TpN3.Ej1;
 import ar.edu.uns.cs.ed.tdas.tdapila.Stack;
 import java.util.EmptyStackException;
 

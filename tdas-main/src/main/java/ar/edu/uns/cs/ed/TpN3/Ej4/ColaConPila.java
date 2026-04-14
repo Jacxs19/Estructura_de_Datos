@@ -1,4 +1,4 @@
-package TpN3.Ej4;
+package ar.edu.uns.cs.ed.TpN3.Ej4;
 import ar.edu.uns.cs.ed.tdas.excepciones.EmptyQueueException;
 import ar.edu.uns.cs.ed.tdas.tdacola.Queue;
 

@@ -1,4 +1,4 @@
-package TpN1.TDAConjunto;
+package ar.edu.uns.cs.ed.TpN1.TDAConjunto;
 public interface Conjunto<E> {                              //<E> sirve para que el conjunto pueda guardar elementos de cualquier tipo.
     public int size();
 

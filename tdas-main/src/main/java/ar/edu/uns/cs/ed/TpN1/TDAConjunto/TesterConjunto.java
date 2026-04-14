@@ -1,4 +1,4 @@
-package TpN1.TDAConjunto;
+package ar.edu.uns.cs.ed.TpN1.TDAConjunto;
 public class TesterConjunto{
     public static void main (String []a){
         Conjunto <Integer> c1 = new ConjuntoArreglo<Integer> (5);

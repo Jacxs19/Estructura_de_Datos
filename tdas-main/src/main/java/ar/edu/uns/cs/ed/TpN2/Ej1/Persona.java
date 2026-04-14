@@ -1,4 +1,4 @@
-package TpN2.Ej1;
+package ar.edu.uns.cs.ed.TpN2.Ej1;
 public class Persona {
     private String nombre;
     private int DNI;

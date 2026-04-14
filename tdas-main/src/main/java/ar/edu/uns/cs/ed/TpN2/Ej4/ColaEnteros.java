@@ -1,4 +1,4 @@
-package TpN2.Ej4;
+package ar.edu.uns.cs.ed.TpN2.Ej4;
 import java.util.Queue;
 import java.util.LinkedList;
 class ColaEnteros{

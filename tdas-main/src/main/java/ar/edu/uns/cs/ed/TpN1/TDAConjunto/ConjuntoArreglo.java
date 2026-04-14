@@ -1,4 +1,4 @@
-package TpN1.TDAConjunto;
+package ar.edu.uns.cs.ed.TpN1.TDAConjunto;
 public class ConjuntoArreglo<E> implements Conjunto<E>{
 
     private int cant;

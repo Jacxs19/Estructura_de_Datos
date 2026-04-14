@@ -1,4 +1,4 @@
-package TpN2.Ej3;
+package ar.edu.uns.cs.ed.TpN2.Ej3;
 import java.lang.NullPointerException;
 import java.util.Stack;
 

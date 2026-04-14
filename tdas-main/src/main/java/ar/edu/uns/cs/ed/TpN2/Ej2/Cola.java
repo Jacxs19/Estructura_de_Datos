@@ -1,4 +1,4 @@
-package TpN2.Ej2;
+package ar.edu.uns.cs.ed.TpN2.Ej2;
 import java.util.Queue;
 import java.util.LinkedList;
 public class Cola {
