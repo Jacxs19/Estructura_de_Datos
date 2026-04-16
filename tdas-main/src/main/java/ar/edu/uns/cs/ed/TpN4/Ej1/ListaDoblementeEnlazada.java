@@ -4,6 +4,8 @@ import ar.edu.uns.cs.ed.tdas.tdalista.PositionList;
 import ar.edu.uns.cs.ed.tdas.excepciones.BoundaryViolationException;
 import ar.edu.uns.cs.ed.tdas.excepciones.EmptyListException;
 import ar.edu.uns.cs.ed.tdas.excepciones.InvalidPositionException;
+import ar.edu.uns.cs.ed.Iteradores.ElementIterator;
+import java.util.Iterator;
 
 
 public class ListaDoblementeEnlazada<E> implements PositionList<E>{
@@ -109,6 +111,12 @@ public class ListaDoblementeEnlazada<E> implements PositionList<E>{
         aux.setElemento(element);
         return elemento;
     }
+    public Iterator<E> iterator(){
+        return new ElementIterator<E>(this);
+    }
+    public Iterable<Position<E>> positions(){
+        
+    }
 
 
     //Metodos aux
@@ -130,5 +138,47 @@ public class ListaDoblementeEnlazada<E> implements PositionList<E>{
 
 
 
-    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /*PositionList<Position<E>> listaAux= new ListaDoblementeEnlazada<Position<E>>();
+        if(!isEmpty()){
+            Position <E> p = first();
+            while (p!=null){
+                listaAux.addLast(p);
+                try{
+                    if(p!=last())
+                        try{
+                            p=next(p);
+                    } catch (InvalidPositionException e){
+                        System.out.println("Posicion Invalida");
+                    } catch (BoundaryViolationException e){
+                        System.out.println("El ultimo elemento no tiene siguiente");
+                    }
+                    else
+                        p=null;
+                } catch(EmptyListException e){
+                    System.out.println("No hay ultimo elemento en lista vacia.");
+                }
+            }
+        }
+        return listaAux; */
+
 }

@@ -5,6 +5,7 @@ import ar.edu.uns.cs.ed.tdas.Position;
 
 import static org.junit.Assert.*;
 import java.util.*;
+import ar.edu.uns.cs.ed.TpN4.Ej1.ListaDoblementeEnlazada;
 
 import org.junit.*;
 
@@ -18,7 +19,7 @@ public class ListTest {
 
 	private PositionList<String> getList() {
 		PositionList<String> lista = null;
-		//lista = new ListaDoblementeEnlazada<String>(); //TODO: Descomentar y crear instancia del TDA a testear
+		lista = new ListaDoblementeEnlazada<String>(); //TODO: Descomentar y crear instancia del TDA a testear
 		return lista;
 	}
 
