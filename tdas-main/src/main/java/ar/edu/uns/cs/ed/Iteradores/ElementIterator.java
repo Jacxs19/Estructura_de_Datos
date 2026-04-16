@@ -26,6 +26,5 @@ public class ElementIterator<E> implements Iterator<E>{
         cursor=(cursor == lista.last())? null : lista.next(cursor);
         return resultado;
     }
-
-    
 }
+

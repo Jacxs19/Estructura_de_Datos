@@ -1,12 +1,11 @@
-package ar.edu.uns.cs.ed.TpN4.Ej1;
+package ar.edu.uns.cs.ed.TpN4.Ej2;
 import ar.edu.uns.cs.ed.tdas.Position;
 import ar.edu.uns.cs.ed.tdas.tdalista.PositionList;
 import ar.edu.uns.cs.ed.tdas.excepciones.BoundaryViolationException;
 import ar.edu.uns.cs.ed.tdas.excepciones.EmptyListException;
 import ar.edu.uns.cs.ed.tdas.excepciones.InvalidPositionException;
 import ar.edu.uns.cs.ed.Iteradores.ElementIterator;
-import java.util.Iterator;
-
+import java.util.*;
 
 
 public class ListaDoblementeEnlazada<E> implements PositionList<E>{
@@ -68,6 +67,8 @@ public class ListaDoblementeEnlazada<E> implements PositionList<E>{
         if(isEmpty())
             throw new InvalidPositionException("Lista vacia");
         DNodo <E> aux= checkPosition(p);
+        if(aux==tail)
+            throw new InvalidPositionException("p es tail");
         DNodo <E> nodo=new DNodo<E>(element, aux.getSiguiente(),aux);
         aux.getSiguiente().setAnterior(nodo);
         aux.setSiguiente(nodo);
@@ -77,6 +78,8 @@ public class ListaDoblementeEnlazada<E> implements PositionList<E>{
         if(isEmpty())
             throw new InvalidPositionException("Lista vacia");
         DNodo<E> aux= checkPosition(p);
+        if(aux==head)
+            throw new InvalidPositionException("p es head");
         DNodo<E> nodo = new DNodo<E> (element, aux, aux.getAnterior());
         aux.getAnterior().setSiguiente(nodo);
         aux.setAnterior(nodo);
@@ -100,6 +103,8 @@ public class ListaDoblementeEnlazada<E> implements PositionList<E>{
         if(isEmpty())
             throw new InvalidPositionException("Lista vacia");
         DNodo<E> aux = checkPosition(p);
+        if(aux==head || aux==tail)
+            throw new InvalidPositionException("No se puede sobreescribir los centinelas");
         E elemento=aux.element();
         aux.setElemento(element);
         return elemento;
@@ -108,14 +113,33 @@ public class ListaDoblementeEnlazada<E> implements PositionList<E>{
         return new ElementIterator<E>(this);
     }
     public Iterable<Position<E>> positions(){
-        PositionList<Position<E>> positions = new ListaDoblementeEnlazada<Position<E>>();
-        DNodo<E> nodoAux= head.getSiguiente();
-        while(nodoAux!=tail){
-            positions.addLast(nodoAux);
-            nodoAux=nodoAux.getSiguiente();
-        }
-        return positions;  
+
     }
+
+    public void metodo(E e1, E e2){
+        DNodo<E>nodo1 = new DNodo<E>(e1);
+        DNodo<E>nodo2 = new DNodo<E>(e2);
+        if(isEmpty()){
+            this.addLast(e2);
+            this.addLast(e1);
+        }
+        if (tamanio==1){
+            throw new InvalidPositionException("La lista solo tiene un elemento.");
+        }
+        //Para e1:
+        DNodo<E> primero=head.getSiguiente();
+        primero.getSiguiente().setAnterior(nodo1);
+        nodo1.setSiguiente(primero.getSiguiente());
+        primero.setSiguiente(nodo1);
+        nodo1.setAnterior(primero);
+        //Para e2:
+        DNodo<E> ultimo =tail.getAnterior();
+        ultimo.getAnterior().setSiguiente(nodo2);
+        nodo2.setAnterior(ultimo.getAnterior());
+        ultimo.setAnterior(nodo2);
+        nodo2.setSiguiente(ultimo);
+    }
+
 
     //Metodos aux
     private DNodo<E> checkPosition(Position<E> p){  //Preguntar.
@@ -131,53 +155,6 @@ public class ListaDoblementeEnlazada<E> implements PositionList<E>{
         }
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    /*PositionList<Position<E>> listaAux= new ListaDoblementeEnlazada<Position<E>>();
-        if(!isEmpty()){
-            Position <E> p = first();
-            while (p!=null){
-                listaAux.addLast(p);
-                try{
-                    if(p!=last())
-                        try{
-                            p=next(p);
-                    } catch (InvalidPositionException e){
-                        System.out.println("Posicion Invalida");
-                    } catch (BoundaryViolationException e){
-                        System.out.println("El ultimo elemento no tiene siguiente");
-                    }
-                    else
-                        p=null;
-                } catch(EmptyListException e){
-                    System.out.println("No hay ultimo elemento en lista vacia.");
-                }
-            }
-        }
-        return listaAux; */
 }
 
 
