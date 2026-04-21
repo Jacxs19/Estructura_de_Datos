@@ -1,4 +1,4 @@
-package ar.edu.uns.cs.ed.PracticaParciales.parcial1.ej1;
+package ar.edu.uns.cs.ed.PracticaParciales.Practicasparaelprimerparcial.Parcial1.ej1;
 import ar.edu.uns.cs.ed.TpN4.Ej1.DNodo;
 import ar.edu.uns.cs.ed.tdas.excepciones.InvalidPositionException;
 import ar.edu.uns.cs.ed.tdas.tdalista.PositionList;

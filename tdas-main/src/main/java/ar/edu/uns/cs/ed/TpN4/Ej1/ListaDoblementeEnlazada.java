@@ -39,12 +39,16 @@ public class ListaDoblementeEnlazada<E> implements PositionList<E>{
         return tail.getAnterior();
     }
     public Position<E> next(Position<E> p){
+        if(isEmpty())
+            throw new InvalidPositionException("Lista Vacia");
         DNodo<E> n= checkPosition(p);
         if(n.getSiguiente()==tail)
             throw new BoundaryViolationException("Es el ultimo de la lista");
         return n.getSiguiente();
     }
     public Position<E> prev (Position<E> p){
+        if(isEmpty())
+            throw new InvalidPositionException("Lista Vacia");
         DNodo<E> n= checkPosition(p);
         if(n.getAnterior()==head)
             throw new BoundaryViolationException("Es el primero de la lista");

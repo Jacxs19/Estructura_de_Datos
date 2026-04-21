@@ -7,7 +7,7 @@ import java.util.Iterator;
 
 public class metodos{
 
-    public <E> boolean seEncuentra (PositionList<E> l, E e1){
+    public <E>boolean seEncuentra (PositionList<E> l, E e1){
         if(l==null || e1==null)
             throw new NullPointerException("La lista o el elemento es nulo.");
         if(l.isEmpty())

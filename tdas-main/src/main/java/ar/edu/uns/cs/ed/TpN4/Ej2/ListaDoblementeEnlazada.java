@@ -113,6 +113,13 @@ public class ListaDoblementeEnlazada<E> implements PositionList<E>{
         return new ElementIterator<E>(this);
     }
     public Iterable<Position<E>> positions(){
+        PositionList<Position<E>> positions = new ListaDoblementeEnlazada<Position<E>>();
+        DNodo<E> nodoAux= head.getSiguiente();
+        while(nodoAux!=tail){
+            positions.addLast(nodoAux);
+            nodoAux=nodoAux.getSiguiente();
+        }
+        return positions;
 
     }
 

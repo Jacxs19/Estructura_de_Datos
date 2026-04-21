@@ -1,4 +1,4 @@
-package ar.edu.uns.cs.ed.PracticaParciales.parcial1.ej2;
+package ar.edu.uns.cs.ed.PracticaParciales.Practicasparaelprimerparcial.Parcial1.ej2;
 import ar.edu.uns.cs.ed.tdas.tdapila.Stack;
 import ar.edu.uns.cs.ed.tdas.tdacola.Queue;
 

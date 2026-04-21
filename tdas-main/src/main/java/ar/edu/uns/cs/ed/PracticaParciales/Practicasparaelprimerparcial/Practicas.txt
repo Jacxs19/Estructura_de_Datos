@@ -1,0 +1,139 @@
+public Stack<E> pilasIntercaladas(Stack<E> p1, Stack<E> p2){
+	Stack<E> pilaADevolver = new Pila<E>();			//Asumo que implementa Stack
+	while(!p1.isEmpty() || !p2.isEmpty()){
+		if(!p1.isEmpty())
+			pilaADevolver.push(p1.pop());
+		if(!p2.isEmpty())
+			pilaADevolver.push(p2.pop());
+	}
+	return pilaADevolver;
+}
+
+public Integer maximoEnQ(Queue<Integer> q){
+	Integer max =0;
+	Queue<Integer> colaAux = new Cola<Integer>();		//Asumoe que Cola implementa Queue
+	Integer aux;
+	while(!q.isEmpty()){
+		aux=q.dequeue();
+		if(aux>max)
+			max=aux;
+		colaAux.enqueue(aux);
+	}
+	while(!colaAux.isEmpty()){
+		q.enqueue(colaAux.dequeue());
+	}
+	return max;
+}
+
+
+
+
+public void metodo(Stack<Character> p, Queue<Character> q){
+	Stack<Character> pilaAux = new PilaConArreglo<Character>();		//Asumo que PilaConArreglo implementa Stack
+	while(!p.isEmpty()){
+		pilaAux.push(p.pop());
+	}
+	while(!q.isEmpty){
+		p.push(q.dequeue());
+	}
+	while(!pilaAux.isEmpty()){
+		p.push(pilaAux.pop());
+	}
+	
+}
+
+public Queue<Integer> soloImpares(Queue<Integer> q){
+	Queue<Integer> colaADevolver = new ColaConArreglo<Integer>();
+	Integer numero;
+	while(!q.isEmpty()){
+		numero=q.dequeue();
+		if(numero%2 !=0)
+			colaADevolver.enqueue(numero);	
+	}
+	return colaADevolver;
+}
+
+
+public int duplicarElem(E elem)throws EmptyListException{
+	if(isEmpty()){
+		throw new EmptyListException("Lista vacia");
+	}
+	int cant=0;
+	PositionList<Position<E>> listaAux = new ListaDE<Position<E>>();
+	for(Position<E> pos : this.positions()){
+		if(pos.element().equals(elem)){
+			listaAux.addLast(pos);
+			cant++;
+		}
+	}
+	for(Position<E> pos : listaAux){
+		this.addAfter(pos, elem);
+	}
+	return cant;
+}
+
+public void addLast(E elem){
+	DNodo<E> nodo = new DNodo<E>(elem);
+	tail.getAnterior().setSiguiente(nodo);
+	nodo.setAnterior(tail.getAnterior());
+	tail.setAnterior(nodo);
+	nodo.setSiguiente(tail);
+	cantElems++;
+}
+public void addAfter(Position<E> p, E elem){
+	if(isEmpty())
+		throw new EmptyListException("Lista vacia");
+	DNodo<E> pos = checkPosition(p);
+	DNodo<E> nodoAInsertar = new DNodo<E>(elem);
+	pos.getSiguiente().setAnterior(nodoAInsertar);
+	nodoAInsertar.setSiguiente(pos.getSiguiente());
+	pos.setSiguiente(nodoAInsertar);
+	nodoAInsertar.setAnterior(pos);
+	cantElems++;
+}
+public Iterable<Position<E>> positions(){
+	PositionList<Position<E>> positions = new listaDE<Position<E>>();
+	DNodo<E> p = head.getSiguiente();
+	while(p!=null){
+		positions.addLast(p);
+		p= (p.getSiguiente() == tail) ? null : p.getSiguiente();
+	}
+	return positions;
+}
+private DNodo<E> checkPosition(Position<E> p){
+	try{
+		if(p==null)
+			throw new InvalidPositionException("Posicion invalida");
+		if(p.element()==null)
+			throw new InvalidPositionException("Posicion borrada enteriormente");
+		return (DNodo<E>) p;
+	}catch(ClassCastExcpetion e){
+		throw new InvalidPositionException("p no es una posicion de lista");
+	}
+}
+
+public PositionList<E> metodo2(PositionList<E> L1, PositionList<E> L2){
+	PositionList<E> listaADevolver = new ListaDE<E>();
+	if(L1.isEmpty() || L2.isEmpty())
+		return listaADevolver;
+	for(E elem1 : L1){
+		for(E elem2 : L2){
+			if(elem1.equals(elem2)){
+				if(!pertenece(listaADevolver,elem1))
+					listaADevolver.addLast(elem1);
+				break;
+			}
+		}
+	}
+	
+	return listaADevolver;	
+}
+private <E>boolean pertenece(PositionList<E> lista , E elem){
+	for(E e :lista)
+		if(e.equals(elem))
+			return true;
+	return false;
+}
+
+
+
