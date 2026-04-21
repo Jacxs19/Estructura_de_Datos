@@ -4,10 +4,9 @@ import ar.edu.uns.cs.ed.tdas.tdalista.PositionList;
 import ar.edu.uns.cs.ed.tdas.Position;
 import java.util.Iterator;
 
-
-public class metodos{
-
-    public <E>boolean seEncuentra (PositionList<E> l, E e1){
+public class  metodos{
+    //Preguntar <E> en cada ej0
+    public <E> boolean seEncuentra (PositionList<E> l, E e1){
         if(l==null || e1==null)
             throw new NullPointerException("La lista o el elemento es nulo.");
         if(l.isEmpty())

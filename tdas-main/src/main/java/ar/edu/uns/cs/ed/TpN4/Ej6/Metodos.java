@@ -12,22 +12,15 @@ import java.util.Iterator;
 public class Metodos<E> {
     public PositionList<E> listasIntercaladas(PositionList<E> l1, PositionList<E> l2){
         PositionList<E> intercalada = new ListaDoblementeEnlazada<E>();
-        if(l1.isEmpty())
-            for(E elem : l2)
-                intercalada.addLast(elem);
-        if(l2.isEmpty())
-            for(E elem : l1)
-                intercalada.addLast(elem);
-        else{
-            Iterator<E> it1 = l1.iterator();
-            Iterator<E> it2= l2.iterator();
-            while(it1.hasNext() || it2.hasNext()){
-                if(it1.hasNext())
-                    intercalada.addLast(it1.next());
-                if(it2.hasNext())
-                    intercalada.addLast(it2.next());
+        Iterator<E> it1 = l1.iterator();
+        Iterator<E> it2= l2.iterator();
+        while(it1.hasNext() || it2.hasNext()){
+            if(it1.hasNext())
+                intercalada.addLast(it1.next());
+            if(it2.hasNext())
+                intercalada.addLast(it2.next());
             } 
-        }
+        
         return intercalada; 
     }
    /*  
@@ -35,7 +28,6 @@ public class Metodos<E> {
     Position<E> p1 = L1.isEmpty() ? null : L1.first();
     Position<E> p2 = L2.isEmpty() ? null : L2.first();
     while (p1 != null || p2 != null) {
-    try {
         if (p1 != null) {
             intercalada.addLast(p1.element());
             p1 = (p1 == L1.last()) ? null : L1.next(p1);
@@ -44,10 +36,7 @@ public class Metodos<E> {
             intercalada.addLast(p2.element());
             p2 = (p2 == L2.last()) ? null : L2.next(p2);
         }
-    } catch (EmptyListException | InvalidPositionException | BoundaryViolationException e) {
-        // Manejo de errores
     }
-
 } 
 */
     public PositionList<Integer> listaIntercaladaEnteros(PositionList<Integer> l1, PositionList<Integer> l2){       //Ya estan ordenadas.

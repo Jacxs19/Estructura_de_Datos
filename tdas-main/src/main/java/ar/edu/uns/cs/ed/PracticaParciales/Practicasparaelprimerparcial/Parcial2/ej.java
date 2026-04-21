@@ -55,19 +55,19 @@ public class ej<E> extends ListaDoblementeEnlazada<E> {
     }
 
 
-
-    //Ej2.
+    //Preguntar Break
+    //Ej2, Dado dos listas genericas l1, l2, retorne una lista l3 con los elementos que se encuentran tanto en l1 como en l2. Comparar por equivalencia.
     public PositionList<E> listasIncluidas(PositionList<E> l1, PositionList<E> l2){
-        PositionList<E> listaJuntas = new ListaDoblementeEnlazada<E>();
+        PositionList<E> l3 = new ListaDoblementeEnlazada<E>();
         for(Position<E> pos1 : l1.positions()){
             for(Position<E> pos2 : l2.positions()){
                 if(pos1.element().equals(pos2.element())){
-                    listaJuntas.addLast(pos2.element());
+                    l3.addLast(pos2.element());
                     break;
                 }
             }
         }
-        return listaJuntas;
+        return l3;
     }
 
 
