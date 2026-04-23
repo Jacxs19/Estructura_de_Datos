@@ -1,11 +1,8 @@
 package ar.edu.uns.cs.ed.TpN4.Ej6;
-import ar.edu.uns.cs.ed.TpN3.*;
 import ar.edu.uns.cs.ed.TpN4.Ej1.ListaDoblementeEnlazada;
 import ar.edu.uns.cs.ed.tdas.tdalista.PositionList;
 import ar.edu.uns.cs.ed.tdas.Position;
-import ar.edu.uns.cs.ed.tdas.excepciones.BoundaryViolationException;
-import ar.edu.uns.cs.ed.tdas.excepciones.EmptyListException;
-import ar.edu.uns.cs.ed.tdas.excepciones.InvalidPositionException;
+
 
 import java.util.Iterator;
 
@@ -43,42 +40,45 @@ public class Metodos<E> {
         PositionList<Integer> lista = new ListaDoblementeEnlazada<Integer>();
         if (l1 ==null || l2==null)
             return lista;
-        
             Iterator<Integer> it1 = l1.iterator();
             Iterator<Integer> it2 = l2.iterator();
-            Integer n1 = it1.hasNext() ? it1.next() : null;
-            Integer n2 = it2.hasNext() ? it2.next() : null;
+            Integer n1 = (it1.hasNext()) ? it1.next() : null;
+            Integer n2 = (it2.hasNext()) ? it2.next() : null;
 
             while(n1 !=null && n2 !=null){
                 if(n1<n2){
-                    if(lista.isEmpty() || !lista.last().element().equals(n1))           //Verifico que la lista no este vacia y que no tenga el mismo numero.
+                    if(!pertenece(n1,lista))           
                         lista.addLast(n1);
                     n1= it1.hasNext() ? it1.next() : null;
                 }
-                if(n1>n2){
-                    if(lista.isEmpty() || !lista.last().element().equals(n2))
+                else if(n1>n2){
+                    if(!pertenece(n2,lista))
                         lista.addLast(n2);
                     n2= it2.hasNext() ? it2.next() : null;
                 }
                 else{                                                                   //Son iguales
-                    if(lista.isEmpty() || !lista.last().element().equals(n2))
-                        lista.addLast(n1);
+                    if(!pertenece(n2,lista))
+                        lista.addLast(n2);
                     n1= it1.hasNext() ? it1.next() : null;
                     n2= it2.hasNext() ? it2.next() : null;
                 }
             }
             while (n1!=null){
-                if(lista.isEmpty() || !lista.last().element().equals(n2))
-                        lista.addLast(n1);
-                    n1= it1.hasNext() ? it1.next() : null;
+                if(!pertenece(n1,lista))
+                    lista.addLast(n1);
+                n1= it1.hasNext() ? it1.next() : null;
             }
             while(n2!=null){
-                if(lista.isEmpty() || !lista.last().element().equals(n2))
-                        lista.addLast(n2);
-                    n2= it2.hasNext() ? it2.next() : null;
+                if(!pertenece(n2,lista))
+                    lista.addLast(n2);
+                n2= it2.hasNext() ? it2.next() : null;
             }
             return lista;
-        
-
+    }
+    private boolean pertenece(Integer num, PositionList<Integer> L){
+        for(Integer e : L)
+            if(e.equals(num))
+                return true;
+        return false;
     }
 }

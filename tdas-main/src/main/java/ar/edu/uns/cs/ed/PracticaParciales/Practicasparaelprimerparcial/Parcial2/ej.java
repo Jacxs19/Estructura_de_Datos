@@ -30,6 +30,29 @@ public class ej<E> extends ListaDoblementeEnlazada<E> {
         }
         return cant;
         }
+
+
+        //o
+    public int duplicarElem(E elem) throws EmptyListException{
+        if(cantElems==0)
+            throw new EmptyListException("Lista vacia");
+        int cant=0;
+        DNodo<E> nodo = head.getSiguiente();
+        while(nodo!=tail){
+            DNodo<E> sig = nodo.getSiguiente();
+            if(nodo.element().equals(elem)){
+                DNodo<E> insertar = new DNodo<E> (elem);
+                sig.setAnterior(insertar);
+                insertar.setSiguiente(sig);
+                nodo.setSiguiente(insertar);
+                insertar.setAnterior(nodo);
+                cantElems++;
+                cant++;
+            }
+            nodo=sig;
+        }
+        return cant;
+    }
     
     public void addAfter (Position<E> p , E elem){
         if(isEmpty())
@@ -70,6 +93,49 @@ public class ej<E> extends ListaDoblementeEnlazada<E> {
         return l3;
     }
 
+    //o
+    public PositionList<E> metodo (PositionList<E> L1, PositionList<E> L2){
+        PositionList<E> intercalada = new listaDE<E>();
+        for(E elem1 : L1)
+            for(E elem2 :L2){
+                if(elem1.equals(elem2)){
+                    if(!pertenece(elem1,intercalada)){
+                        intercalada.addLast(elem1);
+                    }
+                    break;
+                }
+            }
+        return intercalada;
+    }
+
+
+    public PositionList<E> metodo (PositionList<E> L1, PositionList<E> L2){
+        PositionList<E> intercalada = new listaDE<E>();
+        boolean esta=false;
+        for(E elem1 : L1){
+            Iterator<E> it2 = L2.iterator();
+            esta=false;
+            while(it2.hasNext() && !esta){
+                E elem2 = it2.next();
+                if(elem1.equals(elem2)){
+                    if(!pertenece(elem1,intercalada)){
+                        intercalada.addLast(elem1);
+                        esta=true;
+                    }
+                    else
+                        esta=true;
+                }
+            }
+        }
+        return intercalada;
+    }
+    private boolean pertenece(E elem, PositionList<E> L){
+        for(E elemento : L)
+            if(elem.equals(elemento))
+                return true;
+        return false;
+    }
+
 
     //Ej 3.
     public Stack<Character> eliminarDePila(Stack<Character> p , Character c){
@@ -90,11 +156,19 @@ public class ej<E> extends ListaDoblementeEnlazada<E> {
         }
         return pilaADevolver;       //Devuelvo una pila vacia si p esta vacio.
     }
-
-
-
-
-
+    //o
+    public Stack<Character> eliminarDePila(Stack<Character> p , Character c){
+        Stack<Character> aux = new PilaConArreglo<Character>();
+        Stack<Character> aDevolver = new PilaConArreglo<Character>();
+        while(!p.isEmpty())
+            aux.push(p.pop());
+        while(!aux.isEmpty()){
+            Character letra = aux.pop();
+            if(!letra.equals(c))
+                aDevolver.push(letra);
+            p.push(letra);
+        }
+        return aDevolver;
 
 
 

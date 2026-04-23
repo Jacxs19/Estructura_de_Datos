@@ -1,5 +1,4 @@
 package ar.edu.uns.cs.ed.TpN4.Ej5;
-import ar.edu.uns.cs.ed.TpN3.*;
 import ar.edu.uns.cs.ed.TpN4.Ej1.ListaDoblementeEnlazada;
 import ar.edu.uns.cs.ed.tdas.tdalista.PositionList;
 import ar.edu.uns.cs.ed.tdas.Position;

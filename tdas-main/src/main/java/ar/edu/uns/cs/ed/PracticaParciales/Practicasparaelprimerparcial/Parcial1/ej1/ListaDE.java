@@ -19,7 +19,7 @@ public class ListaDE<E> implements PositionList<E>{
     public PositionList<E> dividirLista(Position<E> pos){
         if(isEmpty())
             throw new InvalidPositionException("Lista vacia");
-        PositionList<E> listaAux = new ListaDE<E>();
+        PositionList<Position<E>> listaAux = new ListaDE<Position<E>>();
         DNodo<E> nodoAux= (DNodo<E>)pos;
         nodoAux.getAnterior().setSiguiente(tail);
         tail.setAnterior(nodoAux.getAnterior());
@@ -28,8 +28,9 @@ public class ListaDE<E> implements PositionList<E>{
             if(nodoAux.element()==null){
                 throw new NullPointerException("Elemento nulo.");
             }
-            listaAux.addLast(nodoAux.element());
+            listaAux.addLast(nodoAux);
             nodoAux.setElemento(null);
+            nodoAux= sig;
             cantElems--;
         }
         return listaAux;

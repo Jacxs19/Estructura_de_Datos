@@ -11,6 +11,9 @@ import ar.edu.uns.cs.ed.TpN4.Ej2.DNodo;
 import java.util.Iterator;
 
 public class MetodoEliminar<E> {
+    
+    private DNodo<E> header;
+    private int tamanio;
 
     public void eliminar(PositionList<E> l1 , PositionList<E> l2){
         if(l1!=null && l2!=null){ 
@@ -32,16 +35,17 @@ public class MetodoEliminar<E> {
         }
         
     }
+    public void addFirst(E element){
+        DNodo<E> nuevo = new DNodo<E>(element);
+        header.getSiguiente().setAnterior(nuevo);
+        nuevo.setSiguiente(header.getSiguiente());
+        nuevo.setAnterior(header);
+        header.setSiguiente(nuevo);
+        tamanio++;
+    }
     
 }
 
 
 
-public void addFirst(E element){
-    DNodo<E> nuevo = new DNodo<E>(element);
-    header.getSiguiente().setAnterior(nuevo);
-    nuevo.setSiguiente(header.getSiguiente());
-    nuevo.setAnterior(header);
-    header.setSiguiente(nuevo);
-    tamanio++;
-}
+
