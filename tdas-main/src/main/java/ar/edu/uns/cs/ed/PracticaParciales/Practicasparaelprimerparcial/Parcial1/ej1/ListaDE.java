@@ -17,10 +17,10 @@ public class ListaDE<E> implements PositionList<E>{
     }
 
     public PositionList<E> dividirLista(Position<E> pos){
-        if(isEmpty())
+        if(cantElems==0)
             throw new InvalidPositionException("Lista vacia");
         PositionList<Position<E>> listaAux = new ListaDE<Position<E>>();
-        DNodo<E> nodoAux= (DNodo<E>)pos;
+        DNodo<E> nodoAux= (DNodo<E>) pos;
         nodoAux.getAnterior().setSiguiente(tail);
         tail.setAnterior(nodoAux.getAnterior());
         while(nodoAux!=tail){
