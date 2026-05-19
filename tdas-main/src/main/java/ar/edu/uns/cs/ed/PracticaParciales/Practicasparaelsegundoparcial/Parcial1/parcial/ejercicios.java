@@ -68,6 +68,8 @@ public class ejercicios<E,K,V> {
         TNodo<E> nodo = checkPosition(p);
         if(nodo==raiz)
             throw new InvalidPositionException("No se puede eliminar la raiz");
+        if(nodo.getPadre().getHijos().isEmpty())
+            return false;
         Position<TNodo<E>> Posultimo =nodo.getPadre().getHijos().last();               //Consigo el ultimo hijo del padre del nodo
         if(Posultimo.element()!=nodo)
             return false;
