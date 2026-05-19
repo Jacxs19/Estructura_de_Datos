@@ -1,12 +1,12 @@
 package ar.edu.uns.cs.ed.TpN5.ej1;
 import ar.edu.uns.cs.ed.tdas.tdalista.PositionList;
-import ar.edu.uns.cs.ed.tdas.tdamapeo.*;
-import ar.edu.uns.cs.ed.TpN4.Ej1.ListaDoblementeEnlazada;
-import ar.edu.uns.cs.ed.TpN5.ej2.MapeoConLista;
+import ar.edu.uns.cs.ed.tdas.tdamapeo.Map;
+import ar.edu.uns.cs.ed.TDAS_Implementados.DiccionarioConHashAbierto;
+import ar.edu.uns.cs.ed.TDAS_Implementados.ListaDoblementeEnlazada;
+import ar.edu.uns.cs.ed.TDAS_Implementados.MapeoConHashAbierto;
 import ar.edu.uns.cs.ed.tdas.Entry;
 import ar.edu.uns.cs.ed.tdas.tdadiccionario.Dictionary;
 
-import java.security.Key;
 import java.util.Iterator;
 
 
@@ -52,11 +52,11 @@ public class Metodos<K,V> {
 
     //Inciso c)
     public Dictionary<K,V> acomodar (Dictionary<K,V> d){
-        Map<K,V> aux = new MapeoConLista<K,V>();
+        Map<K,V> aux = new MapeoConHashAbierto<K,V>();
         for(Entry<K,V> E1 : d.entries()){
             aux.put(E1.getKey(),E1.getValue());                                 //Si ya existia esa llave, pisa el valor anterior por el entrante y devuelve el viejo.
         }
-        Dictionary<K,V> diccionarioAcomodado = new DiccionarioConLista<K,V>();
+        Dictionary<K,V> diccionarioAcomodado = new DiccionarioConHashAbierto<K,V>();
         for(Entry<K,V> E2 : aux.entries()){
             diccionarioAcomodado.insert(E2.getKey(),E2.getValue());
         }
@@ -65,7 +65,7 @@ public class Metodos<K,V> {
 
     //Inciso d)
     public Map<Character,Integer> aparicionesCaracter(PositionList<Character> lista){
-        Map<Character,Integer> mapeoApariciones = new MapeoConLista<Character,Integer>();
+        Map<Character,Integer> mapeoApariciones = new MapeoConHashAbierto<Character,Integer>();
         for(Character c : lista){
             if(mapeoApariciones.get(c)!=null){                                              //Si devuelve el valor de aparicicones, coloco el mismo caracter y le aumento el tamaño.
                     mapeoApariciones.put(c,mapeoApariciones.get(c)+1);

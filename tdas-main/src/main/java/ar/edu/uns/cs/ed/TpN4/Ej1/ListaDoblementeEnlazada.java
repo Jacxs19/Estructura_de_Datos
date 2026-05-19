@@ -4,7 +4,7 @@ import ar.edu.uns.cs.ed.tdas.tdalista.PositionList;
 import ar.edu.uns.cs.ed.tdas.excepciones.BoundaryViolationException;
 import ar.edu.uns.cs.ed.tdas.excepciones.EmptyListException;
 import ar.edu.uns.cs.ed.tdas.excepciones.InvalidPositionException;
-import ar.edu.uns.cs.ed.Iteradores.ElementIterator;
+import ar.edu.uns.cs.ed.TDAS_Implementados.ElementIterator;
 import java.util.Iterator;
 
 

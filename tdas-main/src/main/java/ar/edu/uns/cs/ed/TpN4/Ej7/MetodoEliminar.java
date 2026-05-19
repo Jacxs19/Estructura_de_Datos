@@ -1,14 +1,11 @@
 package ar.edu.uns.cs.ed.TpN4.Ej7;
+
 import ar.edu.uns.cs.ed.tdas.Position;
 import ar.edu.uns.cs.ed.tdas.tdalista.PositionList;
-import ar.edu.uns.cs.ed.tdas.excepciones.BoundaryViolationException;
-import ar.edu.uns.cs.ed.tdas.excepciones.EmptyListException;
-import ar.edu.uns.cs.ed.tdas.excepciones.InvalidPositionException;
-import ar.edu.uns.cs.ed.Iteradores.ElementIterator;
 import ar.edu.uns.cs.ed.TpN4.Ej1.ListaDoblementeEnlazada;
-import ar.edu.uns.cs.ed.TpN4.Ej2.DNodo;
+import ar.edu.uns.cs.ed.TDAS_Implementados.DNodo;
 
-import java.util.Iterator;
+
 
 public class MetodoEliminar<E> {
     

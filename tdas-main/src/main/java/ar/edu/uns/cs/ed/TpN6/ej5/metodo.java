@@ -1,10 +1,7 @@
 package ar.edu.uns.cs.ed.TpN6.ej5;
 
-import ar.edu.uns.cs.ed.TpN4.Ej1.ListaDoblementeEnlazada;
-import ar.edu.uns.cs.ed.TpN5.ej2.MapeoConHashAbierto;
-import ar.edu.uns.cs.ed.TpN6.ej1.TDAArbol;
+import ar.edu.uns.cs.ed.TDAS_Implementados.ListaDoblementeEnlazada;
 import ar.edu.uns.cs.ed.tdas.tdalista.PositionList;
-import ar.edu.uns.cs.ed.tdas.tdamapeo.Map;
 import ar.edu.uns.cs.ed.tdas.Position;
 import ar.edu.uns.cs.ed.tdas.tdaarbol.Tree;
 import java.util.Iterator;

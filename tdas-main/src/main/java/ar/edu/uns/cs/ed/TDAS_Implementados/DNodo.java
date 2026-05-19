@@ -1,4 +1,4 @@
-package ar.edu.uns.cs.ed.TpN4.Ej2;
+package ar.edu.uns.cs.ed.TDAS_Implementados;
 import ar.edu.uns.cs.ed.tdas.Position;
 
 public class DNodo<E> implements Position<E>{

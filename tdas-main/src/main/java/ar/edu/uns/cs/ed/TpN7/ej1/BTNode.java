@@ -4,10 +4,11 @@ public class BTNode<E> implements BTPosition<E>{
     private E element;
     private BTPosition<E> left, right, parent;
 
-    public BTNode(E element, BTPosition<E> left, BTPosition<E> right){
+    public BTNode(E element, BTPosition<E> left, BTPosition<E> right, BTPosition<E> padre){
         this.left=left;
         this.element=element;
         this.right=right;
+        parent=padre;
     }
     public void setElemento(E e){
         element=e;

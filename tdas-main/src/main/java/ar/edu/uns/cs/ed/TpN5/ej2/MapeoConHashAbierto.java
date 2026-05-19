@@ -8,7 +8,7 @@ import ar.edu.uns.cs.ed.tdas.tdamapeo.Map;
 import java.util.Iterator;
 
 
-
+@SuppressWarnings("unchecked")
 public class MapeoConHashAbierto<K,V>implements Map<K,V>{
     private  PositionList<Entrada<K,V>>[] A;                
     private  static final double factorDeCarga= 0.9f;
@@ -111,7 +111,7 @@ public class MapeoConHashAbierto<K,V>implements Map<K,V>{
     }
 
     private void reHash(){
-        int tamanio = N+1;
+        int tamanio = 2*N;
         boolean esPrimo =false;
         while(!esPrimo){
             if(!SiguientePrimo(tamanio))
@@ -145,46 +145,3 @@ public class MapeoConHashAbierto<K,V>implements Map<K,V>{
     } 
         
 }
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
- 
-    
-
-
-
-
-
-    
-

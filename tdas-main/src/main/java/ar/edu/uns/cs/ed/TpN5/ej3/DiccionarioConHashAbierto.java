@@ -4,12 +4,12 @@ import ar.edu.uns.cs.ed.tdas.excepciones.InvalidKeyException;
 import ar.edu.uns.cs.ed.tdas.tdalista.PositionList;
 import ar.edu.uns.cs.ed.tdas.Entry;
 import ar.edu.uns.cs.ed.tdas.Position;
-import ar.edu.uns.cs.ed.TpN4.Ej1.ListaDoblementeEnlazada;
+import ar.edu.uns.cs.ed.TDAS_Implementados.ListaDoblementeEnlazada;
 import ar.edu.uns.cs.ed.tdas.tdadiccionario.Dictionary;
-import ar.edu.uns.cs.ed.TpN5.ej2.Entrada;
+import ar.edu.uns.cs.ed.TDAS_Implementados.Entrada;
 
 
-import java.util.Iterator;
+@SuppressWarnings("unchecked")
 
 public class DiccionarioConHashAbierto<K,V> implements Dictionary<K,V>{
     private PositionList<Entrada<K,V>>[] A;
@@ -98,7 +98,7 @@ public class DiccionarioConHashAbierto<K,V> implements Dictionary<K,V>{
 
 
     private void reHash(){
-        int tamanio = N+1;
+        int tamanio = 2*N;
         boolean esPrimo=false;
         while(!esPrimo){
             if(!siguientePrimo(tamanio))

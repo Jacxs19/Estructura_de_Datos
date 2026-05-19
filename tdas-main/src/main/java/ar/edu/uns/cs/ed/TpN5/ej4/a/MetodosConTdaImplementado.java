@@ -1,12 +1,10 @@
 package ar.edu.uns.cs.ed.TpN5.ej4.a;
 import java.util.Iterator;
 
-import ar.edu.uns.cs.ed.TpN4.Ej1.ListaDoblementeEnlazada;
-import ar.edu.uns.cs.ed.TpN5.ej1.Pair;
-import ar.edu.uns.cs.ed.TpN5.ej2.*;
-import ar.edu.uns.cs.ed.TpN5.ej3.*;
+import ar.edu.uns.cs.ed.TDAS_Implementados.ListaDoblementeEnlazada;
+import ar.edu.uns.cs.ed.TDAS_Implementados.MapeoConHashAbierto;
 import ar.edu.uns.cs.ed.tdas.tdalista.PositionList;
-import ar.edu.uns.cs.ed.TpN5.ej3.DiccionarioConHashAbierto;
+import ar.edu.uns.cs.ed.TDAS_Implementados.DiccionarioConHashAbierto;
 import ar.edu.uns.cs.ed.tdas.tdadiccionario.Dictionary;
 import ar.edu.uns.cs.ed.tdas.tdamapeo.Map;
 

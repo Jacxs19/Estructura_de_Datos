@@ -1,7 +1,8 @@
-package ar.edu.uns.cs.ed.Iteradores;
+package ar.edu.uns.cs.ed.TDAS_Implementados;
 import java.util.*;
 import ar.edu.uns.cs.ed.tdas.Position;
 import ar.edu.uns.cs.ed.tdas.tdalista.PositionList;
+
 public class ElementIterator<E> implements Iterator<E>{
     protected PositionList<E> lista;
     protected Position<E> cursor;
