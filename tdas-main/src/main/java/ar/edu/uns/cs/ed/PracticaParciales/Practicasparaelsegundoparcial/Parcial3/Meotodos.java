@@ -2,8 +2,12 @@ package ar.edu.uns.cs.ed.PracticaParciales.Practicasparaelsegundoparcial.Parcial
 
 import ar.edu.uns.cs.ed.tdas.excepciones.InvalidKeyException;
 import ar.edu.uns.cs.ed.tdas.excepciones.InvalidPositionException;
+import ar.edu.uns.cs.ed.tdas.tdaarbol.Tree;
 import ar.edu.uns.cs.ed.TDAS_Implementados.ListaDoblementeEnlazada;
+import ar.edu.uns.cs.ed.TDAS_Implementados.MapeoConHashAbierto;
+import ar.edu.uns.cs.ed.tdas.tdamapeo.Map;
 import ar.edu.uns.cs.ed.TDAS_Implementados.TNodo;
+
 import ar.edu.uns.cs.ed.TDAS_Implementados.Entrada;
 import ar.edu.uns.cs.ed.tdas.tdalista.PositionList;
 import ar.edu.uns.cs.ed.tdas.Position;
@@ -16,7 +20,7 @@ public class Meotodos {
         int cant=0;
         PositionList<Entrada<K,V>> bucket = buckets[h(key)];
         for(Entrada<K,V> entradas : bucket){
-            if(etradas.getKey().equals(key))
+            if(entradas.getKey().equals(key))
                 cant++;
             if(cant==e)
                 return true;
@@ -39,8 +43,10 @@ public class Meotodos {
             eliminarSubArbol(hijos.element(),listaADevolver);
             eliminar.AddLast(hijos);
         }
-        for(Position<TNodo<E>> pos : eliminar)
+        for(Position<TNodo<E>> pos : eliminar){
             nodo.getHijos().remove(pos);
+            size--;
+        }
         return listaADevolver;
     }
 
@@ -64,6 +70,34 @@ public class Meotodos {
             throw new InvalidPositionException("p no es un nodo de arbol")
         }
     }
+
+    //Ej3
+
+    public Map<Character,Integer> mapeoVocales(Tree<Character> T){
+        Map<Character,Integer> mapeo = new MapeoConHashAbierto<Character,Integer>();       //C1
+        if(T!=null && !T.isEmpty())                                                         //C2
+            posOrden(mapeo,T,T.root());                                                     //O(n), done n es la cantidad de nodos del arbol
+        return mapeo;                                                                       //C3
+    }
+
+    private void posOrden(Map<Character,Integer> m,Tree<Character> T, Position<Character> p){
+        for(Position<Character> hijos : T.children(p)){                                 
+            posOrden(m,T,hijos);
+        }
+        if(esVocal(p.element())){
+            if(m.get(p.element())==null){
+                m.put(p.element(),1);
+            }
+            else
+                m.put(p.element(),m.get(p.element())+1);
+        }
+    }
+
+    private boolean esVocal(Character c){
+        return c=='a' || c=='e' || c=='i' || c=='o' || c=='u';
+    }
+
+    //T_mapeoVocales(n)= O(n), donde n es la cantidad de nodos, ya que debo visitar todos los nodos del arbol una vez desde la raiz.
 
 
 

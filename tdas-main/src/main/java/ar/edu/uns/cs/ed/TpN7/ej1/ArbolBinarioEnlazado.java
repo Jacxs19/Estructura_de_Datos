@@ -156,12 +156,34 @@ public class ArbolBinarioEnlazado<E> implements BinaryTree<E>{
     public void remove(Position<E> p){
         if(size==0)
             throw new InvalidPositionException("Arbol vacio");
-        if(isInternal(p)){ 
-            if()
+        BTNode<E> nodo = checkPosition(p);
+        if(hasLeft(p) && hasRight(p))
+            throw new InvalidPositionException("p tiene dos hijos");
+        BTNode<E> hijo = null;
+        if(hasLeft(p))
+            hijo = (BTNode<E>) nodo.getLeft();
+        else if(hasRight(p))
+            hijo = (BTNode<E>) nodo.getRight();
+        if(nodo == raiz){
+            raiz = hijo;
+            if(hijo != null)
+                hijo.setPadre(null);
+            size--;
             return;
         }
+        BTNode<E> padre = (BTNode<E>) nodo.getPadre();
+        if(padre.getLeft() == nodo)
+            padre.setLeft(hijo);
+        else
+            padre.setRight(hijo);
+        if(hijo != null)
+            hijo.setPadre(padre);
+        nodo.setElemento(null);
+        nodo.setLeft(null);
+        nodo.setRight(null);
+        nodo.setPadre(null);
+        size--;
     }
-
 
     private void preOrdenPos(PositionList<Position<E>> l , BTNode<E> nodo){
         l.addLast(nodo);

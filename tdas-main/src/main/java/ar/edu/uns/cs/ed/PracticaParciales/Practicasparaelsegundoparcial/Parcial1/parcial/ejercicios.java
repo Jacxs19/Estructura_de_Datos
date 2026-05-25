@@ -41,23 +41,26 @@ public class ejercicios<E,K,V> {
     public Mapeo<Character, Integer> eliminarHojas(BinaryTree<Character> arbol, Position<Character> p) throws InvalidPositionException{
         Mapeo<Character, Integer> map = new MapeoConHashAbierto<Character,Integer>();
         if(arbol!=null && !arbol.isEmpty()){
-            eliminarEInsertar(arbol, p,map);
+            eliminarEInsertar(arbol, p, map);
         }
         return map;
     }
 
     private void eliminarEInsertar(BinaryTree<Character> A, Position<Character> p, Mapeo<Character,Integer> m){             //Recorrido posOrden, (miro los hijos y luego el padre.)
-        if(A.hasLeft(p))
-            eliminarEInsertar(A,A.left(p),m);
-        if(A.hasRight(p))
-            eliminarEInsertar(A, A.right(p), m);
-        if(!A.hasLeft(p) && !A.hasRight(p)){
-            Character c = p.element();
-            if(m.get(c)==null)
-                m.put(c,1);
-            else
-                m.put(c,m.get(c)+1);
-            A.remove(p);
+        if(p!=null){
+            boolean EsHoja = (!arbol.hasLeft(p) && !arbol.hasRight(p)); 
+            if(A.hasLeft(p))
+                eliminarEInsertar(A,A.left(p),m);
+            if(A.hasRight(p))
+                eliminarEInsertar(A, A.right(p), m);
+            if(EsHoja){
+                Character c = p.element();
+                if(m.get(c)==null)
+                    m.put(c,1);
+                else
+                    m.put(c,m.get(c)+1);
+                A.remove(p);
+            }
         }
     }
 
