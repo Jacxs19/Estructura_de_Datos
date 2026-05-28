@@ -12,6 +12,8 @@ import java.util.Iterator;
 
 import ar.edu.uns.cs.ed.tdas.excepciones.*;
 
+import ar.edu.uns.cs.ed.TpN8.ej1.i.GrafoNoDirigidoConListaDeAdyacencia;
+
 
 /**
  * Tester desarrollado con JUnit 4 para la estructura Graph (no dirigido).
@@ -39,7 +41,7 @@ public class GraphTests {
 	 */
 	@Before
 	public void setUp() {
-		//graph = new ListaDeAdyacencias<Object, Object>(); //TODO: Descomentar y crear instancia del TDA a testear
+		graph = new GrafoNoDirigidoConListaDeAdyacencia<Object, Object>(); //TODO: Descomentar y crear instancia del TDA a testear
 		o1 = new Object();
 		Assume.assumeNotNull(graph);
 	}
