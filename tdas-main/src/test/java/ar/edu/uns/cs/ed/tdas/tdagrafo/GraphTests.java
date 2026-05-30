@@ -13,6 +13,7 @@ import java.util.Iterator;
 import ar.edu.uns.cs.ed.tdas.excepciones.*;
 
 import ar.edu.uns.cs.ed.TpN8.ej1.i.GrafoNoDirigidoConListaDeAdyacencia;
+import ar.edu.uns.cs.ed.TpN8.ej1.ii.GrafoNoDirigidoConMatrizDeAdyacencia;
 
 
 /**
@@ -41,7 +42,7 @@ public class GraphTests {
 	 */
 	@Before
 	public void setUp() {
-		graph = new GrafoNoDirigidoConListaDeAdyacencia<Object, Object>(); //TODO: Descomentar y crear instancia del TDA a testear
+		graph = new GrafoNoDirigidoConMatrizDeAdyacencia<Object, Object>(9); //TODO: Descomentar y crear instancia del TDA a testear
 		o1 = new Object();
 		Assume.assumeNotNull(graph);
 	}
