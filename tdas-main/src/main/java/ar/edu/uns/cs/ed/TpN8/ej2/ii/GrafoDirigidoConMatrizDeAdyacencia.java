@@ -1,31 +1,35 @@
-package ar.edu.uns.cs.ed.TpN8.ej1.ii;
+package ar.edu.uns.cs.ed.TpN8.ej2.ii;
 
+import ar.edu.uns.cs.ed.tdas.tdagrafo.GraphD;
 import ar.edu.uns.cs.ed.tdas.tdagrafo.Edge;
-import ar.edu.uns.cs.ed.tdas.tdagrafo.Graph;
 import ar.edu.uns.cs.ed.tdas.tdagrafo.Vertex;
+
 import ar.edu.uns.cs.ed.tdas.tdalista.PositionList;
-import ar.edu.uns.cs.ed.TDAS_Implementados.ListaDoblementeEnlazada;
 import ar.edu.uns.cs.ed.tdas.Position;
 import ar.edu.uns.cs.ed.tdas.excepciones.InvalidEdgeException;
 import ar.edu.uns.cs.ed.tdas.excepciones.InvalidVertexException;
-import ar.edu.uns.cs.ed.tdas.excepciones.GraphException;
+import ar.edu.uns.cs.ed.TDAS_Implementados.ListaDoblementeEnlazada;
 
 @SuppressWarnings("unchecked")
-public class GrafoNoDirigidoConMatrizDeAdyacencia<V,E> implements Graph<V,E>{
-    protected PositionList<Vertex<V>> vertices;
+public class GrafoDirigidoConMatrizDeAdyacencia<V,E> implements GraphD<V,E> {
     protected PositionList<Edge<E>> arcos;
+    protected PositionList<Vertex<V>> vertices;
     protected Edge<E> [][] matriz;
     protected int cantidadVertices;
 
-    public GrafoNoDirigidoConMatrizDeAdyacencia(int n){         //Recibe el tamaño de la matriz
-        vertices= new ListaDoblementeEnlazada<Vertex<V>>();
-        arcos= new ListaDoblementeEnlazada<Edge<E>>();
-        matriz= (Edge<E>[][]) new Arco[n][n];
+
+
+    public GrafoDirigidoConMatrizDeAdyacencia(int n){
+        arcos=new ListaDoblementeEnlazada<Edge<E>>();
+        vertices=new ListaDoblementeEnlazada<Vertex<V>>();
         cantidadVertices=0;
-        for(int i=0; i<n; i++)
-            for(int j=0; j<n; j++)
-                matriz[i][j]=null;
+        matriz= (Edge<E>[][]) new Arco[n][n];
+        for(int i=0; i<n; i++ )
+            for(int j=0; j<n; j++ )
+                matriz[i][j] = null;
     }
+
+
     public Iterable<Vertex<V>> vertices(){
         PositionList<Vertex<V>> lista = new ListaDoblementeEnlazada<Vertex<V>>();
         for(Vertex<V> v : vertices)
@@ -38,103 +42,105 @@ public class GrafoNoDirigidoConMatrizDeAdyacencia<V,E> implements Graph<V,E>{
             lista.addLast(e);
         return lista;
     }
-    public Iterable<Edge<E>> incidentEdges(Vertex<V> v){
+    public Iterable<Edge<E>> incidentEdges(Vertex<V> v){            //Recorro por columna
         Vertice<V> vertice = checkVertex(v);
         PositionList<Edge<E>> lista = new ListaDoblementeEnlazada<Edge<E>>();
-        int fila = vertice.getIndice();
-        for(int col=0; col<matriz[1].length;col++){
+        int col=vertice.getIndice();
+        for(int fila=0; fila<matriz[0].length;fila++)
             if(matriz[fila][col]!=null)
                 lista.addLast(matriz[fila][col]);
-        }
         return lista;
     }
-
+    public Iterable<Edge<E>> succesorEdges(Vertex<V> v){            //Recorro por fila
+        Vertice<V> vertice= checkVertex(v);
+        PositionList<Edge<E>> lista = new ListaDoblementeEnlazada<Edge<E>>();
+        int fila = vertice.getIndice();
+        for(int col=0; col<matriz[0].length;col++)
+            if(matriz[fila][col]!=null)
+                lista.addLast(matriz[fila][col]);
+        return lista;
+    }
     public Vertex<V> opposite(Vertex<V> v, Edge<E> e){
         Vertice<V> vertice = checkVertex(v);
         Arco<V,E> arco = checkEdge(e);
-        if(arco.getV1()== vertice)return arco.getV2();
-        else if(arco.getV2()==v)return arco.getV1();
-        else throw new InvalidEdgeException("Vertice y arco no relacionados");
-        
+        if(arco.getCola()==vertice) return arco.getPunta();
+        else if(arco.getPunta()==vertice) return arco.getCola();
+        else throw new InvalidEdgeException("Vertice y Arco no relacionados");
     }
-
     public Vertex<V> [] endvertices(Edge<E> e){
         Arco<V,E> arco = checkEdge(e);
-        Vertex<V>[] a = (Vertex<V>[]) new Vertex [2];
-        a[0]=arco.getV1();
-        a[1]=arco.getV2();
+        Vertice<V> [] a = new Vertice[2];
+        a[0]=arco.getCola();
+        a[1]=arco.getPunta();
         return a;
     }
-    public boolean areAdjacent(Vertex<V> v, Vertex<V>w){
-        Vertice<V> vertice1 = checkVertex(v);
-        Vertice<V> vertice2 = checkVertex(w);
-        int i1 = vertice1.getIndice();
-        int i2 = vertice2.getIndice();
+    public boolean areAdjacent(Vertex<V> v, Vertex<V> w){
+        Vertice<V> v1 = checkVertex(v);
+        Vertice<V> v2 = checkVertex(w);
+        int i1 = v1.getIndice();
+        int i2 = v2.getIndice();
         return matriz[i1][i2]!=null;
     }
     public V replace(Vertex<V> v, V x){
         Vertice<V> vertice = checkVertex(v);
-        V rotulo = vertice.element();
+        V elemento = vertice.element();
         vertice.setRotulo(x);
-        return rotulo;
+        return elemento;
     }
     public E replace(Edge<E> e, E x){
         Arco<V,E> arco = checkEdge(e);
-        E rotulo = arco.element();
+        E element = arco.element();
         arco.setRotulo(x);
-        return rotulo;
+        return element;
     }
     public Vertex<V> insertVertex(V x){
-        if(cantidadVertices >= matriz.length){
+        if(cantidadVertices >= matriz.length)
             aumentarMatriz();
-        }
-        Vertice<V> vertice = new Vertice<V>(x, cantidadVertices++);
+        Vertice<V> vertice = new Vertice<V>(x,cantidadVertices++);
         vertices.addLast(vertice);
         vertice.setPosicionEnVertices(vertices.last());
         return vertice;
     }
     public Edge<E> insertEdge(Vertex<V> v, Vertex<V> w, E e){
-        Vertice<V> vertice1= checkVertex(v);
-        Vertice<V> vertice2= checkVertex(w);
-        Arco<V,E> arco = new Arco(e,vertice1,vertice2);
+        Vertice<V> v1 = checkVertex(v);
+        Vertice<V> v2 = checkVertex(w);
+        Arco<V,E> arco = new Arco<V,E>(e,v1,v2);
         arcos.addLast(arco);
         arco.setPosicionEnArcos(arcos.last());
-        int i1=vertice1.getIndice();
-        int i2=vertice2.getIndice();
-        matriz[i1][i2]=matriz[i2][i1]=arco;
+        int fila = v1.getIndice();
+        int col = v2.getIndice();
+        matriz[fila][col] = arco;
         return arco;
     }
-    public V removeVertex(Vertex<V> v){                                         //Preguntar corrimiento de vertices.
+    public V removeVertex(Vertex<V> v){                 //Preguntar si debo mover la matriz
         Vertice<V> vertice = checkVertex(v);
         V rotulo = vertice.element();
-        int fila = vertice.getIndice();
-        PositionList<Edge<E>> lista = new ListaDoblementeEnlazada<Edge<E>>();
-        for(int i=0; i<matriz[0].length;i++){
-            if(matriz[fila][i]!=null){
-                lista.addLast(matriz[fila][i]);
-            }
-        }
-        for(Edge<E> e : lista){ 
-            removeEdge(e);
-        }
+        for(Edge<E> arc : incidentEdges(v))
+            removeEdge(arc);
+        for(Edge<E> arc : succesorEdges(v))
+            removeEdge(arc);
         vertices.remove(vertice.getPosicionEnVertices());
         vertice.setPosicionEnVertices(null);
         vertice.setRotulo(null);
-        cantidadVertices--;
         return rotulo;
     }
-
     public E removeEdge(Edge<E> e){
         Arco<V,E> arco = checkEdge(e);
-        int fila = arco.getV1().getIndice();
-        int col = arco.getV2().getIndice();
-        matriz[fila][col] = null;
-        matriz[col][fila] = null;
-        arcos.remove(arco.getPosicionEnArcos());
         E elemento = arco.element();
+        int fila= arco.getCola().getIndice();
+        int col = arco.getPunta().getIndice();
+        matriz[fila][col]=null;
+        arcos.remove(arco.getPosicionEnArcos());
+        arco.setCola(null);
+        arco.setPunta(null);
+        arco.setPosicionEnArcos(null);
         arco.setRotulo(null);
         return elemento;
     }
+
+
+
+
 
 
 
@@ -177,68 +183,6 @@ public class GrafoNoDirigidoConMatrizDeAdyacencia<V,E> implements Graph<V,E>{
         }
     }
 
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     private class Vertice<V> implements Vertex<V> {
@@ -268,36 +212,42 @@ public class GrafoNoDirigidoConMatrizDeAdyacencia<V,E> implements Graph<V,E>{
             return posicionEnVertices;
         }
     }
-
     private class Arco<V,E> implements Edge<E>{
         private Position<Edge<E>> posicionEnArcos;
-        private Vertice<V> v1, v2;
+        private Vertice<V> cola, punta;
         private E rotulo;
 
-        public Arco(E rot , Vertice<V> v1 , Vertice<V> v2){
-            rotulo=rot;
-            this.v1=v1;
-            this.v2=v2;
+        public Arco(E e, Vertice<V> cola , Vertice<V> punta){
+            rotulo=e;
+            this.cola=cola;
+            this.punta=punta;
         }
         //Setters
+        public void setRotulo(E e){
+            rotulo=e;
+        }
         public void setPosicionEnArcos(Position<Edge<E>> p){
             posicionEnArcos=p;
         }
-        public void setRotulo(E rot){
-            rotulo=rot;
+        public void setCola(Vertice<V> c){
+            cola=c;
+        }
+        public void setPunta(Vertice<V> p){
+            punta=p;
         }
         //Getters
-        public Position<Edge<E>> getPosicionEnArcos(){
-            return posicionEnArcos;
-        }
-        public Vertice<V> getV1(){
-            return v1;
-        }
-        public Vertice<V> getV2(){
-            return v2;
-        }
         public E element(){
             return rotulo;
         }
+        public Position<Edge<E>> getPosicionEnArcos(){
+            return posicionEnArcos;
+        }
+        public Vertice<V> getCola(){
+            return cola;
+        }
+        public Vertice<V> getPunta(){
+            return punta;
+        }
     }
+    
 }

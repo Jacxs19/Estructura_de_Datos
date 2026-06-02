@@ -13,8 +13,6 @@ public class Arco<V,E> implements Edge<E>{
         this.rotulo=rotulo;
         this.v1=v1;
         this.v2=v2;
-        v1.getAdyacentes().addLast(this);
-        v2.getAdyacentes().addLast(this);
     }
     //Setters
     public void setV1(Vertice<V,E> v){
