@@ -96,7 +96,7 @@ public class GrafoNoDirigidoConMatrizDeAdyacencia<V,E> implements Graph<V,E>{
     public Edge<E> insertEdge(Vertex<V> v, Vertex<V> w, E e){
         Vertice<V> vertice1= checkVertex(v);
         Vertice<V> vertice2= checkVertex(w);
-        Arco<V,E> arco = new Arco(e,vertice1,vertice2);
+        Arco<V,E> arco = new Arco<V,E>(e,vertice1,vertice2);
         arcos.addLast(arco);
         arco.setPosicionEnArcos(arcos.last());
         int i1=vertice1.getIndice();

@@ -34,7 +34,7 @@ public class metodo<V,E> {
         visitados.put(s,true);
         while(!q.isEmpty()){
             Vertex<V> x = q.dequeue();
-            if(x == t)
+            if(x.equals(t))
                 return true;
             for(Edge<E> e : g.incidentEdges(x)){
                 Vertex<V> v = g.opposite(x,e);
