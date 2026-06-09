@@ -9,6 +9,10 @@ import org.junit.Assume;
 import org.junit.Before;
 import org.junit.Test;
 
+
+
+import ar.edu.uns.cs.ed.TpN9.ej1.ColaConPrioridad;
+
 public class PriorityQueueTest {
 	private PriorityQueue<Integer, String> s; // interface
 	private String n1, n2, n3, n4, n5, n6;
@@ -16,7 +20,7 @@ public class PriorityQueueTest {
 
 	private PriorityQueue<Integer, String> getPriorityQueue() {
 		PriorityQueue<Integer, String> ccp = null;
-		//ccp = new CCPconLista<Integer, String>(new Comparador<Integer>()); //TODO: Descomentar y crear instancia del TDA a testear
+		ccp = new ColaConPrioridad<Integer, String>(new Comparador<Integer>()); //TODO: Descomentar y crear instancia del TDA a testear
 		return ccp;
 	}
 
@@ -235,8 +239,7 @@ public class PriorityQueueTest {
 		try {
 			for (int i = 1; i <= 1000; i++) {
 				entrada = s.min();
-				assertTrue("min() no funciona correctamente", entrada.getKey()
-						.equals(i));
+				assertTrue("min() no funciona correctamente", entrada.getKey().equals(i));
 				s.removeMin();
 			}
 		} catch (EmptyPriorityQueueException e) {
@@ -337,8 +340,7 @@ public class PriorityQueueTest {
 		try {
 			for (int i = 1; i <= 1000; i++) {
 				entrada = s.removeMin();
-				assertTrue("removeMin() no funciona correctamente", entrada
-						.getKey().equals(i));
+				assertTrue("removeMin() no funciona correctamente", entrada.getKey().equals(i));
 			}
 		} catch (EmptyPriorityQueueException e) {
 			fail("El método removeMin() no debería lanzar EmptyQueueException con una cola con elementos.");
