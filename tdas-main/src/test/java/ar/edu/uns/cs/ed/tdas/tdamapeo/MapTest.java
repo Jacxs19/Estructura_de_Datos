@@ -3,6 +3,9 @@ package ar.edu.uns.cs.ed.tdas.tdamapeo;
 import ar.edu.uns.cs.ed.tdas.excepciones.*;
 import ar.edu.uns.cs.ed.tdas.Entry;
 import ar.edu.uns.cs.ed.TpN5.ej2.MapeoConHashAbierto;
+import ar.edu.uns.cs.ed.TpN10.ej2.MapeoConABB;
+
+import ar.edu.uns.cs.ed.TDAS_Implementados.Comparador;			//Solo se usa para testear MapeoConABB
 
 import static org.junit.Assert.*;
 
@@ -21,10 +24,11 @@ public class MapTest {
 
 	private Integer i1, i2, i3;
 
-	private Map<Integer, Integer> getMapeo() {
 
+	private Map<Integer, Integer> getMapeo() {
+		Comparator<Integer> comp = new Comparador<Integer>();
 		Map<Integer, Integer> mapeo = null;
-		mapeo = new MapeoConHashAbierto<Integer, Integer>(); //TODO: Descomentar y crear instancia del TDA a testear
+		mapeo = new MapeoConABB<Integer, Integer>(comp); //TODO: Descomentar y crear instancia del TDA a testear
 		return mapeo;
 
 	}

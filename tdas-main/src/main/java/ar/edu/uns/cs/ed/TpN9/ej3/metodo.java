@@ -12,14 +12,14 @@ import java.util.Comparator;
 public class metodo {
 
     public int[] valOrdenados(Dictionary<Character,Integer> d){
-        Comparator<Character> comp = new DefaultComparator<Character>();
+        Comparator<Integer> comp = new Comparador<Integer>();                        
         int[] a = new int[d.size()];
-        PriorityQueue <Character,Integer> c = new ColaConPrioridad<Character,Integer>(comp);
-        for(Entry<Character,Integer> k : d.entries()){
-            c.insert(k.getKey(), k.getValue());
+        PriorityQueue <Integer,Integer> c = new ColaConPrioridad<Integer,Integer>(comp);  //Declaro a c como una cola de prioridad de enteros en enteros
+        for(Entry<Character,Integer> k : d.entries()){                                      //Para poder ordenarlos de menor a mayor
+            c.insert(k.getValue(), k.getValue());
         }
         int i=0;
-        while(!c.isEmpty()){
+        while(!c.isEmpty()){                                                            
             a[i]=c.removeMin().getValue();
             i++;
         }
