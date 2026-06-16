@@ -1,5 +1,9 @@
 package ar.edu.uns.cs.ed.TpN9.ej2;
 
+import java.util.Comparator;
+
+import ar.edu.uns.cs.ed.tdas.tdacolaconprioridad.Comparador;
+
 import ar.edu.uns.cs.ed.TpN9.ej1.ColaConPrioridad;
 
 public class algoritmo<K,V,E> {
@@ -10,13 +14,14 @@ public class algoritmo<K,V,E> {
     //el arreglo A se considera vacío y luego se elimina el elemento mínimo M de C repetidamente y
     //se inserta a M en el arreglo A en orden FIFO.
 
-    public void ordenamientoFIFO( E [] A, int n){                               //n es tamanio del arreglo
-        ColaConPrioridad<K,V> cola = new ColaConPrioridad<K,V>(null);
+    public void ordenamientoFIFO( Integer[] A, int n){                               //n es tamanio del arreglo
+        Comparator<Integer> comp = new Comparador<Integer>();
+        ColaConPrioridad<Integer,Integer> cola = new ColaConPrioridad<Integer,Integer>(comp);
         for(int i=0; i<A.length-1; i++){
-            cola.insert(A[i]);
+            cola.insert(A[i], A[i]);
         }
         for(int i=0; i<A.length-1; i++){
-            A[i]=cola.removeMin();
+            A[i]=cola.removeMin().getValue();
         }
     }
     

@@ -8,7 +8,6 @@ import ar.edu.uns.cs.ed.TDAS_Implementados.ListaDoblementeEnlazada;
 import ar.edu.uns.cs.ed.tdas.Position;
 import ar.edu.uns.cs.ed.tdas.excepciones.InvalidEdgeException;
 import ar.edu.uns.cs.ed.tdas.excepciones.InvalidVertexException;
-import ar.edu.uns.cs.ed.tdas.excepciones.GraphException;
 
 @SuppressWarnings("unchecked")
 public class GrafoNoDirigidoConMatrizDeAdyacencia<V,E> implements Graph<V,E>{

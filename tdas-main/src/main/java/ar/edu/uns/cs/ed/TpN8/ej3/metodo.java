@@ -30,9 +30,8 @@ public class metodo<V,E> {
         if(visitados.get(v)==true)                                                      //No vuelvo a verificar los vertices ya visitados
             return;
         visitados.put(v,true);
-        Iterator<Edge<E>> it = g.incidentEdges(v).iterator();                           //Consigo un iterador de los arcos incidentes al vertice
-        while(it.hasNext()){                                            
-            dfs(g,visitados,g.opposite(v,it.next()));
+        for(Edge<E> e : g.incidentEdges(v)){                                            //Para cada arco incidente de (v) recorro el opuesto a ese arco en DFS    
+            dfs(g,visitados,g.opposite(v,e));
         }
     }
 
